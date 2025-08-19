@@ -1,9 +1,0 @@
-// KQL script
-// Use management commands in this script to configure your database items, such as tables, functions, materialized views, and more.
-
-
-.create-merge table adsb (fields:dynamic, name:string, tags:dynamic, timestamp:datetime) 
-.create-or-alter table adsb ingestion json mapping 'adsb_mapping'
-```
-[{"Properties":{"Path":"$['fields']"},"column":"fields","datatype":""},{"Properties":{"Path":"$['name']"},"column":"name","datatype":""},{"Properties":{"Path":"$['tags']"},"column":"tags","datatype":""},{"Properties":{"Path":"$['timestamp']","Transform":"DateTimeFromUnixSeconds"},"column":"timestamp","datatype":""}]
-```
