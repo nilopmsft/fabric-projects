@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "KQLQueryset",
+    "displayName": "flight-metrics_configuration",
+    "description": "flight-metrics_configuration"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f3e630f5-b5a9-93a7-44ad-f8dead0979e0"
+  }
+}

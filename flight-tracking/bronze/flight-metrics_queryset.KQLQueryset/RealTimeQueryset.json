@@ -1,0 +1,22 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "7135b32f-e6ab-4f3b-b422-d3f4db76818f",
+        "clusterUri": "",
+        "type": "Fabric",
+        "databaseItemId": "6ac1db85-7c6e-851e-4b06-df76ca7bf849",
+        "databaseItemName": "flight-metrics"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "262b2bf0-ff70-4cbc-bb7b-f58ab5e0d45d",
+        "content": "//***********************************************************************************************************\n// Here are two articles to help you get started with KQL:\n// KQL reference guide - https://aka.ms/KQLguide\n// SQL - KQL conversions - https://aka.ms/sqlcheatsheet\n//***********************************************************************************************************\n\n\n// See how many records are in the table.\nadsb\n| count\n\n// Use \"take\" to view a sample number of records in the table and check the data.\nadsb\n| take 10\n\n//Latest ingestion time\nadsb\n| summarize  max(ingestion_time())\n\n\nadsb\n| where timestamp > todatetime('2025-08-18 16:30:00')\n| summarize by timestamp\n| order by timestamp desc\n\n\n//Sample of  aircraft records\nadsb\n| where name ==  'readsb_aircraft'\n| where notempty(fields[\"r\"])\n| where notempty(fields[\"t\"])\n| take 10\n\nadsb\n| where name ==  'readsb_aircraft'\n| where t \n\n\nadsb\n| where fields.r == '92-03327'\n\nadsb\n| extend r = tostring(fields.r)\n| summarize countEntries=count() by r, timestamp\n| where countEntries > 1\n\nadsb\n| where name ==  'readsb_aircraft'\n| distinct tostring(fields.r), tostring(fields.nav_modes), timestamp\n| order by timestamp\n\nadsb\n| where fields['desc'] == \"AIRBUS A-321\"\n| where fields['calc_track'] <> \"\"\n| where fields['r'] == \"N342DN\"\n| where fields['messages'] == 19\n\nadsb\n| summarize max(timestamp)\n\n.show database ADSB operations mirroring-statistics \n\n| extend r = tostring(fields.r)\n| extend nav = tostring(fields.nav_modes)\n| extend s = tostring(fields.seen)\n| summarize countEntries=count() by r, s, nav, timestamp\n| where countEntries > 1\n\nadsb\n| where name ==  'readsb_aircraft'\n| where notempty(fields[\"gva\"])\n| take 100\n\nadsb\n| where name ==  'readsb_aircraft'\n| where notempty(tags[\"emergency\"])\n| where tags[\"emergency\"] != \"none\"\n\n\n//Count of plane data points in last hour, aggregated by 5 minutes\nadsb\n| where ingestion_time() > now(-1h)\n| summarize IngestionCount = count() by bin(ingestion_time(), 5m)\n\n//callsign of top 10 airspeed of planes, last minute\nadsb\n| where ingestion_time() > now(-1m)\n| where notempty(fields[\"alt_geom_geom\"])\n| where notempty(fields[\"gs\"])\n| where notempty(tags[\"r\"])\n| project alt_geomitude=toint(fields[\"alt_geom\"]), Speed=toint(fields[\"gs\"]), Callsign=tostring(tags[\"Call\"]), CallsignURL=strcat(\"https://flightaware.com/live/flight/\",tags[\"Call\"])\n| summarize arg_max(alt_geomitude, Speed, LastSeen=ingestion_time()) by Callsign, CallsignURL\n| order by Speed\n| limit 10 \n\n//callsign of top alt_geomitude last minute in chart form\nadsb\n| where ingestion_time() > now(-1m)\n| where notempty(fields[\"alt_geom\"])\n| where notempty(tags[\"Call\"])\n| project alt_geomitude=toint(fields[\"alt_geom\"]), Speed=toint(fields[\"gs\"]), Callsign=tostring(tags[\"Call\"])\n| summarize arg_max(alt_geomitude, Speed, LastSeen=ingestion_time()) by Callsign\n| order by alt_geomitude\n| limit 100 \n| render scatterchart with (xcolumn=alt_geomitude, ycolumns=Speed, series=[\"Callsign\"])\n\n//Summary of top alt_geomitude aircraft in the last minute\nadsb\n| where ingestion_time() > now(-1m)\n| where notempty(fields[\"alt_geom\"])\n| where notempty(fields[\"gs\"])\n| where notempty(tags[\"Call\"])\n| project alt_geomitude=toint(fields[\"alt_geom\"]), Speed=toint(fields[\"gs\"]), Latitude=todecimal(fields[\"Lat\"]), Longitude=todecimal(fields[\"Long\"]), Callsign=tostring(tags[\"Call\"])\n| summarize arg_max(alt_geomitude, Speed, Latitude, Longitude, LastSeen=ingestion_time()) by Callsign\n\nadsb\n| where tags[\"Call\"] == \"CALLSIGNHERE \"\n| project tags, ingestion_time()",
+        "title": "Tab",
+        "dataSourceId": "7135b32f-e6ab-4f3b-b422-d3f4db76818f"
+      }
+    ]
+  }
+}

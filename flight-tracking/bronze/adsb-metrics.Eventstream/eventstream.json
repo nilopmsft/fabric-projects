@@ -1,0 +1,53 @@
+{
+  "sources": [
+    {
+      "id": "a7fde9ce-dd36-4ea4-b2bd-ec7a14ec00d4",
+      "name": "ADSB-Feeder",
+      "type": "CustomEndpoint",
+      "properties": {}
+    }
+  ],
+  "destinations": [
+    {
+      "id": "40c862bd-d1ab-4071-b757-e65ee02cecda",
+      "name": "flights-event-house",
+      "type": "Eventhouse",
+      "properties": {
+        "dataIngestionMode": "DirectIngestion",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "6ac1db85-7c6e-851e-4b06-df76ca7bf849",
+        "tableName": "adsb",
+        "connectionName": "adsb-metrics_flight-metrics-adsb",
+        "mappingRuleName": "adsb_mapping"
+      },
+      "inputNodes": [
+        {
+          "name": "adsb-metrics-stream"
+        }
+      ],
+      "inputSchemas": [
+        {
+          "name": "adsb-metrics-stream",
+          "schema": {
+            "columns": []
+          }
+        }
+      ]
+    }
+  ],
+  "streams": [
+    {
+      "id": "e427c4d1-f508-482c-8b9a-40ba9ccdbd12",
+      "name": "adsb-metrics-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": [
+        {
+          "name": "ADSB-Feeder"
+        }
+      ]
+    }
+  ],
+  "operators": [],
+  "compatibilityLevel": "1.1"
+}

@@ -1,0 +1,15 @@
+[
+  {
+    "name": "adsb_bronze",
+    "path": "/Tables",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Tables/adsb",
+        "itemId": "6ac1db85-7c6e-851e-4b06-df76ca7bf849",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "artifactType": "KustoDatabase"
+      }
+    }
+  }
+]

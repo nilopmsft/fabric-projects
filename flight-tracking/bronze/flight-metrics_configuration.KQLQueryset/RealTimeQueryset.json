@@ -1,0 +1,22 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "3602c930-3107-445b-bc56-e2b8e2218a7b",
+        "clusterUri": "",
+        "type": "Fabric",
+        "databaseItemId": "6ac1db85-7c6e-851e-4b06-df76ca7bf849",
+        "databaseItemName": "flight-metrics"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "d23b09d3-8442-4be0-9830-f4f38a88a46d",
+        "content": "//*******************************************************************************************\n// KQL Mirroring configuration\n// https://learn.microsoft.com/en-us/kusto/management/mirroring-policy?view=microsoft-fabric\n//*******************************************************************************************\n\n// Show Existing mirroring configuration statistics\n .show database ['flight-metrics'] operations mirroring-statistics \n\n// Show Existing mirroring configuration\n .show table adsb policy mirroring \n\n//  Delete mirroring policy\n .delete table adsb policy mirroring \n\n//  Alter mirroring policy with shorter latency (default 180) \n.alter table adsb policy mirroring\n  dataformat=parquet\n  with\n  (IsEnabled=true, Backfill=true, TargetLatencyInMinutes=30)\n",
+        "title": "Tab",
+        "dataSourceId": "3602c930-3107-445b-bc56-e2b8e2218a7b"
+      }
+    ]
+  }
+}
