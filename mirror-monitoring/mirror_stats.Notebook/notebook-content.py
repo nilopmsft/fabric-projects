@@ -609,29 +609,3 @@ display(tables_mirroring_status_df)
 # META   "frozen": false,
 # META   "editable": true
 # META }
-
-# CELL ********************
-
-
-# Option 1: Pandas approach
-
-import pandas as pd
-
-# 1) Load the Spark table into a pandas DataFrame
-pdf = spark.table("fact_table_mirroring_status").toPandas()
-
-# 2) Ensure status_date is datetime, then drop microseconds
-#    - dt.floor('S') rounds down to the nearest second
-pdf["status_date"] = pd.to_datetime(pdf["status_date"], errors="coerce").dt.floor("S")
-
-# 4) (Optional) Push back to Spark as a new table
-spark_df = spark.createDataFrame(pdf)
-spark_df.write.mode("overwrite").saveAsTable("fact_table_mirroring_status")
-
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
