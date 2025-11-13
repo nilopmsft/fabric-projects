@@ -1,0 +1,24 @@
+relationship a9c997d8-249c-23da-a26e-0b161566f0ce
+	fromColumn: fact_capacity_status.capacity_id
+	toColumn: dim_capacities.capacity_id
+
+relationship 7ebf0b8b-dfe9-1127-21e7-a6981dd76236
+	fromColumn: dim_workspaces.capacity_id
+	toColumn: dim_capacities.capacity_id
+
+relationship 33b2b089-511a-a097-e683-de6b1f2950c3
+	fromColumn: dim_tables.db_id
+	toColumn: dim_databases.db_id
+
+relationship 1cd6eb79-301a-c7b2-ba23-c38e9e20eb98
+	fromColumn: fact_database_mirroring_status.db_id
+	toColumn: dim_databases.db_id
+
+relationship ee2da5b9-1b19-6e63-6106-4790939fff12
+	fromColumn: fact_table_mirroring_status.table_id
+	toColumn: dim_tables.table_id
+
+relationship ab7a9963-356e-d6d3-c43c-c6abf80b1652
+	fromColumn: dim_databases.workspace_id
+	toColumn: dim_workspaces.workspace_id
+

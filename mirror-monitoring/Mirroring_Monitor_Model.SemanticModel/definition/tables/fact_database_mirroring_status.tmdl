@@ -1,0 +1,39 @@
+table fact_database_mirroring_status
+	lineageTag: 66f99f5a-5b1b-46a0-9f6b-c42835c099a4
+	sourceLineageTag: [dbo].[fact_database_mirroring_status]
+
+	column db_id
+		dataType: string
+		lineageTag: cde4b177-1369-4fac-8ec7-2740c275fd14
+		sourceLineageTag: db_id
+		summarizeBy: none
+		sourceColumn: db_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column mirroring_status
+		dataType: string
+		lineageTag: ebd11b24-8226-468a-b847-3ab6f70102c5
+		sourceLineageTag: mirroring_status
+		summarizeBy: none
+		sourceColumn: mirroring_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column status_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b85ac9f2-ddf0-4f3f-9e80-408ec0d08b09
+		sourceLineageTag: status_date
+		summarizeBy: none
+		sourceColumn: status_date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_database_mirroring_status = entity
+		mode: directLake
+		source
+			entityName: fact_database_mirroring_status
+			schemaName: dbo
+			expressionSource: 'DirectLake - Mirroring_Monitoring_LH'
+

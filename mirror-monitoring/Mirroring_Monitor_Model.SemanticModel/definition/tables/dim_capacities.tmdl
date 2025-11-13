@@ -1,0 +1,86 @@
+table dim_capacities
+	lineageTag: 5d80e5a1-c0d6-4b03-91db-fd4db1d7ecc3
+	sourceLineageTag: [dbo].[dim_capacities]
+
+	column capacity_state
+		dataType: string
+		lineageTag: 60208caf-9612-4870-beca-3b7651931dbf
+		sourceLineageTag: capacity_state
+		summarizeBy: none
+		sourceColumn: capacity_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column capacity_sku
+		dataType: string
+		lineageTag: 0d5cb016-dcda-4ab5-859e-3be76e801eb9
+		sourceLineageTag: capacity_sku
+		summarizeBy: none
+		sourceColumn: capacity_sku
+
+		annotation SummarizationSetBy = Automatic
+
+	column capacity_region
+		dataType: string
+		lineageTag: 629d4d1c-a6db-4a6a-89e7-f0ac01c5ad67
+		sourceLineageTag: capacity_region
+		summarizeBy: none
+		sourceColumn: capacity_region
+
+		annotation SummarizationSetBy = Automatic
+
+	column row_start
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 97bf3cd4-b06e-4b70-aafd-56db42ff4aea
+		sourceLineageTag: row_start
+		summarizeBy: none
+		sourceColumn: row_start
+
+		annotation SummarizationSetBy = Automatic
+
+	column row_end
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 005282c7-1196-42d3-8fe4-f511d86ad85e
+		sourceLineageTag: row_end
+		summarizeBy: none
+		sourceColumn: row_end
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_current
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: fee3c089-f07f-4588-89e2-fe0f25230410
+		sourceLineageTag: is_current
+		summarizeBy: none
+		sourceColumn: is_current
+
+		annotation SummarizationSetBy = Automatic
+
+	column capacity_id
+		dataType: string
+		lineageTag: 86ba4385-5701-4ab8-a659-c3ba11fb5fe7
+		sourceLineageTag: capacity_id
+		summarizeBy: none
+		sourceColumn: capacity_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column capacity_name
+		dataType: string
+		lineageTag: 8ea012be-0b12-479a-bda5-ed46610904b7
+		sourceLineageTag: capacity_name
+		summarizeBy: none
+		sourceColumn: capacity_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_capacities = entity
+		mode: directLake
+		source
+			entityName: dim_capacities
+			schemaName: dbo
+			expressionSource: 'DirectLake - Mirroring_Monitoring_LH'
+

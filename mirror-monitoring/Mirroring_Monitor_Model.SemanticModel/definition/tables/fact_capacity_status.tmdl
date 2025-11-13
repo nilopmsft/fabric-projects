@@ -1,0 +1,48 @@
+table fact_capacity_status
+	lineageTag: 39b60013-ae57-492e-8199-7eafdcac968c
+	sourceLineageTag: [dbo].[fact_capacity_status]
+
+	column capacity_id
+		dataType: string
+		lineageTag: c79a824c-32d8-459a-a449-dea9d52c5922
+		sourceLineageTag: capacity_id
+		summarizeBy: none
+		sourceColumn: capacity_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column capacity_sku
+		dataType: string
+		lineageTag: db7bba18-34e0-4642-8694-1e0f9a345aa9
+		sourceLineageTag: capacity_sku
+		summarizeBy: none
+		sourceColumn: capacity_sku
+
+		annotation SummarizationSetBy = Automatic
+
+	column capacity_state
+		dataType: string
+		lineageTag: e4f90ae8-44bc-4814-bc95-3de93a03ca94
+		sourceLineageTag: capacity_state
+		summarizeBy: none
+		sourceColumn: capacity_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column status_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cc8d50c8-b6ff-475d-8729-e0e1a2b82ec2
+		sourceLineageTag: status_date
+		summarizeBy: none
+		sourceColumn: status_date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_capacity_status = entity
+		mode: directLake
+		source
+			entityName: fact_capacity_status
+			schemaName: dbo
+			expressionSource: 'DirectLake - Mirroring_Monitoring_LH'
+

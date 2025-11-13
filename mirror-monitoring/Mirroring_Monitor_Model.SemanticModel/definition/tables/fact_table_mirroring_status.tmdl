@@ -1,0 +1,78 @@
+table fact_table_mirroring_status
+	lineageTag: 58bb1122-c0fa-4d4d-87b4-1dea86d08425
+	sourceLineageTag: [dbo].[fact_table_mirroring_status]
+
+	column table_id
+		dataType: string
+		lineageTag: afa2ea97-95b5-4277-a90d-be45e232d817
+		sourceLineageTag: table_id
+		summarizeBy: none
+		sourceColumn: table_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column table_mirror_status
+		dataType: string
+		lineageTag: 330ab023-f81a-43b6-8469-4c8b743cca3e
+		sourceLineageTag: table_mirror_status
+		summarizeBy: none
+		sourceColumn: table_mirror_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column table_processed_bytes
+		dataType: int64
+		formatString: 0
+		lineageTag: 22efaacd-941e-4eb4-b50c-f93fbe5db0cd
+		sourceLineageTag: table_processed_bytes
+		summarizeBy: sum
+		sourceColumn: table_processed_bytes
+
+		annotation SummarizationSetBy = Automatic
+
+	column table_last_sync_date_time
+		dataType: string
+		lineageTag: 549f6c73-5699-4c5a-a87e-db5dc7872c9c
+		sourceLineageTag: table_last_sync_date_time
+		summarizeBy: none
+		sourceColumn: table_last_sync_date_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column table_last_sync_latency_in_seconds
+		dataType: int64
+		formatString: 0
+		lineageTag: 91297a4c-7c80-4d7b-9fa5-44c12bd69eb3
+		sourceLineageTag: table_last_sync_latency_in_seconds
+		summarizeBy: sum
+		sourceColumn: table_last_sync_latency_in_seconds
+
+		annotation SummarizationSetBy = Automatic
+
+	column status_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 26be18f5-a08a-44f4-bbaf-91e7e80c34cc
+		sourceLineageTag: status_date
+		summarizeBy: none
+		sourceColumn: status_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column table_processed_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: 0e2dc4c9-1150-455b-b75f-6dd540c65794
+		sourceLineageTag: table_processed_rows
+		summarizeBy: sum
+		sourceColumn: table_processed_rows
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_table_mirroring_status = entity
+		mode: directLake
+		source
+			entityName: fact_table_mirroring_status
+			schemaName: dbo
+			expressionSource: 'DirectLake - Mirroring_Monitoring_LH'
+

@@ -1,0 +1,22 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DirectLake - Mirroring_Monitoring_LH"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","WebModelingEdit"]
+
+ref table dim_workspaces
+ref table dim_capacities
+ref table fact_capacity_status
+ref table fact_database_mirroring_status
+ref table fact_table_mirroring_status
+ref table dim_tables
+ref table dim_databases
+

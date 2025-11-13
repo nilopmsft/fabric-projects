@@ -1,0 +1,38 @@
+table dim_databases
+	lineageTag: 4911e566-a3f4-4ffc-b994-dccef4c6daa1
+	sourceLineageTag: [dbo].[dim_databases]
+
+	column db_id
+		dataType: string
+		lineageTag: 116ae48a-d394-4948-9b49-7d75b75c95fd
+		sourceLineageTag: db_id
+		summarizeBy: none
+		sourceColumn: db_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column db_name
+		dataType: string
+		lineageTag: c8773b16-e337-4af3-a7e2-fec1f6ee1f52
+		sourceLineageTag: db_name
+		summarizeBy: none
+		sourceColumn: db_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column workspace_id
+		dataType: string
+		lineageTag: 2e74be25-e986-4b7c-8cb0-c9f53d8207d1
+		sourceLineageTag: workspace_id
+		summarizeBy: none
+		sourceColumn: workspace_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_databases = entity
+		mode: directLake
+		source
+			entityName: dim_databases
+			schemaName: dbo
+			expressionSource: 'DirectLake - Mirroring_Monitoring_LH'
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Mirroring_Monitor_Model"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "93f82254-306b-9a20-4722-76fadc0fb7a5"
+  }
+}

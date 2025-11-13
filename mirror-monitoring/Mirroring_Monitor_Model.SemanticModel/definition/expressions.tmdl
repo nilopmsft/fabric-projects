@@ -1,0 +1,9 @@
+expression 'DirectLake - Mirroring_Monitoring_LH' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/f891c0cc-c9e2-420f-a211-965afa173f39/4b44b336-f652-4368-a95e-12f9532b70e7", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 52334c3c-d11f-4913-a5d6-051aab40ec5b
+
+	annotation PBI_IncludeFutureArtifacts = False
+
